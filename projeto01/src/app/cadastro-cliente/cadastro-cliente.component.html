@@ -1,6 +1,27 @@
 <h5>Cadastro de Clientes</h5>
 <p>Preencha o formulário abaixo para incluir um cliente.</p>
-<hr/>
+<hr />
+
+<!-- mensagem de processamento -->
+<div class="alert alert-secondary" role="alert" [hidden]="!mensagemProcessamento">
+    <strong>{{mensagemProcessamento}}</strong>
+</div>
+
+<!-- mensagem de sucesso -->
+<div class="alert alert-success" role="alert" [hidden]="!mensagemSucesso">
+    <strong>{{mensagemSucesso}}</strong>
+    <button type="button" class="close" (click)="limparMensagemSucesso()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<!-- mensagem de erro -->
+<div class="alert alert-danger" role="alert" [hidden]="!mensagemErro">
+    <strong>{{mensagemErro}}</strong>
+    <button type="button" class="close" (click)="limparMensagemErro()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
 
 <div class="row">
     <div class="col-md-4">
@@ -8,33 +29,31 @@
         <form #formCadastro="ngForm" (submit)="cadastrarCliente(formCadastro)">
 
             <label>Nome do cliente:</label>
-            <input type="text" class="form-control"
-                autocomplete="off"
-                placeholder="Nome do Cliente"
-                name="nome" ngModel/>
-            <br/>
+            <input type="text" class="form-control" autocomplete="off" placeholder="Nome do Cliente" name="nome" ngModel />
+            <div class="text-danger" *ngFor="let msg of errosNome">  
+                {{msg}}
+            </div>
+            <br />
 
             <label>Email:</label>
-            <input type="text" class="form-control"
-                autocomplete="off"
-                placeholder="Email"
-                name="email" ngModel/>
-            <br/>
-                
+            <input type="text" class="form-control" autocomplete="off" placeholder="Email" name="email" ngModel />
+            <div class="text-danger" *ngFor="let msg of errosEmail">  
+                {{msg}}
+            </div>
+            <br />
+
             <label>CPF:</label>
-            <input type="text" class="form-control"
-                autocomplete="off"
-                placeholder="CPF"
-                name="cpf" ngModel/>
-            <br/>
+            <input type="text" class="form-control" autocomplete="off" placeholder="CPF" name="cpf" ngModel />
+            <div class="text-danger" *ngFor="let msg of errosCpf">  
+                {{msg}}
+            </div>
+            <br />
 
-            <input type="submit" value="Cadastrar Cliente"
-                class="btn btn-success btn-sm"/>
-                
-		</form>
-		<br/>
+            <input type="submit" value="Cadastrar Cliente" class="btn btn-success btn-sm" />
 
-		<strong>{{mensagem}}</strong>
+        </form>
+
+        <br />
 
     </div>
 </div>
