@@ -1,0 +1,46 @@
+<h5>Cadastro de Usuários</h5>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+
+        <form #formRegister="ngForm" (submit)="cadastrarUsuario(formRegister)">
+
+			<label>Nome do Usuário:</label>
+			<input type="text" name="nome" ngModel class="form-control" placeholder="Digite aqui" />
+			<div class="text-danger" *ngFor="let msg of errosNome">
+				{{msg}}
+			</div>
+			<br />
+
+			<label>Email de Acesso:</label>
+			<input type="text" name="email" ngModel class="form-control" placeholder="Digite aqui" />
+			<div class="text-danger" *ngFor="let msg of errosEmail">
+				{{msg}}
+			</div>
+			<br />
+
+			<label>Senha de Acesso:</label>
+			<input type="password" name="senha" ngModel class="form-control" placeholder="Digite aqui" />
+			<div class="text-danger" *ngFor="let msg of errosSenha">
+				{{msg}}
+			</div>
+			<br />
+
+			<label>Confirme a senha:</label>
+			<input type="password" name="senhaConfirmacao" ngModel class="form-control" placeholder="Digite aqui" />
+			<div class="text-danger" *ngFor="let msg of errosSenhaConfirmacao">
+				{{msg}}
+			</div>
+			<br />
+
+			<input type="submit" value="Cadastrar Usuário" class="btn btn-secondary"/>
+
+		</form>
+
+		<br />
+
+		<strong>{{mensagem}}</strong>
+
+    </div>
+</div>
